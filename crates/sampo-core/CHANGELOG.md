@@ -1,5 +1,29 @@
 # sampo-core
 
+## 0.19.0 — 2026-10-23
+
+### Minor changes
+
+- [3f8f56a](https://github.com/bruits/sampo/commit/3f8f56a6c62d22784f20f3c174182495ad6cfb8d) Added the `exclude_acknowledgments` option to the `[changelog]` section, listing GitHub usernames or Git author names that changelog entries should not thank.
+  
+  ```toml
+  [changelog]
+  exclude_acknowledgments = ["octocat", "The Octocat"]
+  ```
+   — Thanks @goulvenclech!
+- [6de5d88](https://github.com/bruits/sampo/commit/6de5d881680073503589c77a370b224de0b867aa) Added the `automatic_entries` option to the `[changelog]` section. With `"collapse"`, changelogs drop the entries Sampo writes for packages bumped by other packages (such as "Updated dependencies"), consecutive releases with nothing else share one section, and the release pull request folds those packages into a collapsed block.
+  
+  ```toml
+  [changelog]
+  automatic_entries = "collapse"
+  ```
+   — Thanks @arthurfiorette!
+
+### Patch changes
+
+- [480b943](https://github.com/bruits/sampo/commit/480b94366acaf10904e72c16f0576da7164eae2e) Fixed the first release after `sampo pre exit` bumping versions a second time: exited packages now ship at the version their pre-release reached (`1.1.0` after `1.1.0-alpha.1`), including those that left pre-release mode before this fix. — Thanks @goulvenclech!
+- [139c850](https://github.com/bruits/sampo/commit/139c85097c0f4ca32488df83e5e4f3312130fcfb) In Rust (Cargo) projects, fixed `sampo publish` and `ignore_unpublished` ignoring `publish.workspace = true`: crates inheriting `publish = false` are now skipped, and crates inheriting an alternative registry are checked against it instead of crates.io. — Thanks @arthurfiorette!
+
 ## 0.18.0 — 2026-10-09
 
 ### Minor changes
